@@ -108,6 +108,32 @@ curl --location --request DELETE 'http://localhost:3000/reviews/<REVIEW_ID>' \
 --header 'Authorization: Bearer <YOUR_JWT_TOKEN>'
 ```
 
+## 🧩 Schema Descriptions
+
+### 👤 User Schema (`models/User.js`)
+- **username**: `String` – Required, unique. Acts as the user's identifier.
+- **password**: `String` – Required. Stores the user's hashed password.
+- **Collection Name**: `users`
+
+---
+
+### 📝 Review Schema
+- **user**: `String` – Required. References the `username` of the user who wrote the review.  
+  > 🔁 *Note: For better population support, consider changing this to `ObjectId` referencing the User model.*
+- **book**: `ObjectId` – Required. References the book being reviewed (`Book` model).
+- **rating**: `Number` – Required. Value between 1 and 5.
+- **comment**: `String` – Optional. User’s feedback or opinion.
+- **Timestamps**: Automatically includes `createdAt` and `updatedAt`.
+
+---
+
+### 📚 Book Schema
+- **name**: `String` – Required. The title of the book.
+- **author**: `String` – Required. The author's name.
+- **genre**: `String` – Required. Genre or category of the book.
+- **Timestamps**: Automatically includes `createdAt` and `updatedAt`.
+
+
 ## 📋 Assumptions
 
 ### User Management
